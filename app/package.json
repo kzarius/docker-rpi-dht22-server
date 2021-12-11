@@ -1,0 +1,15 @@
+{
+    "name": "rpi_sensor_api",
+    "version": "1.0.1",
+    "description": "A simple API for a RPI sensor.",
+    "author": "Ka'eo McKeague-Clark",
+    "license": "ISC",
+    "main": "index.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.17"
+    }
+  }
+  

@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+
+  python:
+    build: ./python
+    container_name: python
+    restart: always
+    privileged: true
+    environment:
+      TZ: Asia/Hong_Kong
+    volumes:
+      - ./app:/usr/src/app
+    tty: true
+
+  node:
+    build: ./node
+    container_name: node
+    restart: always
+    volumes:
+      - ./app:/usr/app
+    ports:
+      - 80:80
