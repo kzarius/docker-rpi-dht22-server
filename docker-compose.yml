@@ -2,17 +2,20 @@ version: "3"
 
 services:
 
+  # Python container
   python:
     build: ./python
     container_name: python
     restart: always
+    # Pyhton requires privileged to communicate to the sensor device.
     privileged: true
     environment:
+      # Change this to the appropriate tz database code, or your timestamps will be skewed.
       TZ: Asia/Hong_Kong
     volumes:
       - ./app:/usr/src/app
-    tty: true
 
+  # Node.js Container
   node:
     build: ./node
     container_name: node
@@ -20,4 +23,5 @@ services:
     volumes:
       - ./app:/usr/app
     ports:
-      - 80:80
+      # If you need to change the public port, simply change the first port (HOST:CONTAINER)
+      - 4000:4000
