@@ -5,3 +5,5 @@ This small package uses a Raspberry Pi Zero W with an attached Adafruit DHT22 hu
 ## Usage
 
 Configure your data pin in `sensors.py`, change your outward port in `docker-compose.yml` if you need to, and esnure you have docker / docker-compose. Run the docker-compose.yml file by cd'ing to the directory and running `docker-compose up -d`.
+
+You should now begin to see the JSON replies broadcasted at `http://localhost:4000`
