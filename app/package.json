@@ -1,15 +1,23 @@
 {
-    "name": "rpi_sensor_api",
-    "version": "1.0.1",
-    "description": "A simple API for a RPI sensor.",
-    "author": "Ka'eo McKeague-Clark",
-    "license": "ISC",
-    "main": "index.js",
-    "scripts": {
-      "start": "node server.js"
-    },
-    "dependencies": {
-      "express": "^4.17"
-    }
-  }
-  
+  "name": "rpi-sensor-server",
+  "version": "1.0.1",
+  "description": "A simple server for a RPI sensor.",
+  "author": "Ka'eo McKeague-Clark",
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kzarius/rpi-sensors-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kzarius/rpi-sensors-server/issues"
+  },
+  "homepage": "https://github.com/kzarius/rpi-sensors-server#readme"
+}
