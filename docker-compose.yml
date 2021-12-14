@@ -21,7 +21,7 @@ services:
     container_name: node
     restart: always
     volumes:
-      - ./app:/usr/app
+      - ./app:/usr/src/app
     ports:
       # If you need to change the public port, simply change the first port (HOST:CONTAINER)
       - 4000:4000
