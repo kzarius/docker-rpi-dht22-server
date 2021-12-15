@@ -15,9 +15,9 @@ def getReadings(repeater_obj):
 
     # Only write to file if the sensor returns readings.
     if humidity is not None and temperature is not None:
-        f = open("readings.txt", "w+")
+        f = open("./db/readings.txt", "w+")
         # Format the JSON.
-        f.write('{{"timestamp":"{0}","temperature":"{1:0.1f}","humidity":"{2:0.1f}"}}'.format(
+        f.write('{{"timestamp":"{0}","temp":"{1:0.1f}","humidity":"{2:0.1f}"}}'.format(
             str(datetime.datetime.now()).split('.')[0],
             temperature,
             humidity

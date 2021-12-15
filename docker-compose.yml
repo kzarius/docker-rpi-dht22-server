@@ -13,7 +13,7 @@ services:
       # Change this to the appropriate tz database code, or your timestamps will be skewed.
       TZ: Asia/Hong_Kong
     volumes:
-      - ./app:/usr/src/app
+      - ./db:/usr/src/app/db
 
   # Node.js Container
   node:
@@ -21,7 +21,7 @@ services:
     container_name: node
     restart: always
     volumes:
-      - ./app:/usr/src/app
+      - ./db:/usr/src/app/db
     ports:
       # If you need to change the public port, simply change the first port (HOST:CONTAINER)
       - 4000:4000

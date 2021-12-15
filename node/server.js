@@ -8,7 +8,7 @@ app.get('/',(req,res)=>{
 
     // We're using a file to save the readings, so we don't need to wait
     // on the sensor query, which could take awhile.
-    fs.readFile('./readings.txt','utf8',(err,data)=>{
+    fs.readFile('./db/readings.txt','utf8',(err,data)=>{
         if(err){
             // Remember to check against 'error' first when handling the JSON return.
             res.send('{"error":"true"}');
