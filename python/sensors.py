@@ -1,9 +1,11 @@
+import redis
 import time
 import datetime
 import sched
 import Adafruit_DHT
 
-repeater = sched.scheduler(time.time, time.sleep)
+REPEATER = sched.scheduler(time.time, time.sleep)
+CACHE = redis.Redis(host='redis', port=6379)
 
 DHT_SENSOR = Adafruit_DHT.DHT22
 # The GPIO pin that links to the data pin on your DHT sensor.
@@ -13,20 +15,17 @@ def getReadings(repeater_obj):
     # Gather readings from the sensor.
     humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
 
-    # Only write to file if the sensor returns readings.
+    # Only write to redis if the sensor returns readings.
     if humidity is not None and temperature is not None:
-        f = open("./db/readings.txt", "w+")
-        # Format the JSON.
-        f.write('{{"timestamp":"{0}","temp":"{1:0.1f}","humidity":"{2:0.1f}"}}'.format(
-            str(datetime.datetime.now()).split('.')[0],
-            temperature,
-            humidity
-        ))
-        f.close()
+        CACHE.update({
+            "timestamp":str(datetime.datetime.now()).split('.')[0],
+            "temperature":temperature,
+            "humidity":humidity
+        })
 
     # Schedule another refresh in 5 seconds.
-    repeater.enter(5,1,getReadings,(repeater_obj,))
+    REPEATER.enter(5,1,getReadings,(repeater_obj,))
 
 # Schedule the first refresh in 5 seconds.
-repeater.enter(5,1,getReadings,(repeater,))
-repeater.run()
+REPEATER.enter(5,1,getReadings,(REPEATER,))
+REPEATER.run()

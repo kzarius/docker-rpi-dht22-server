@@ -1,0 +1,2 @@
+redis
+Adafruit_DHT
