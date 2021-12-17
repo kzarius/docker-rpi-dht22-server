@@ -1,2 +1,2 @@
-redis
-Adafruit_DHT
+flask
+APScheduler

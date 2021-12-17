@@ -2,12 +2,6 @@ version: "3"
 
 services:
 
-  # Redis container
-  redis:
-    image: redis:alpine
-    container_name: redis
-    restart: always
-
   # Python container
   python:
     build: ./python
@@ -18,17 +12,5 @@ services:
     environment:
       # Change this to the appropriate tz database code, or your timestamps will be skewed.
       TZ: Asia/Hong_Kong
-    volumes:
-      - ./db:/usr/src/app/db
-    tty: true
-
-  # Node.js container
-  node:
-    build: ./node
-    container_name: node
-    restart: always
-    volumes:
-      - ./db:/usr/src/app/db
     ports:
-      # If you need to change the public port, simply change the first port (HOST:CONTAINER)
       - 4000:4000
