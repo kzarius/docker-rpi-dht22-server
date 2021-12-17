@@ -1,7 +1,7 @@
 import flask
 from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
-#import Adafruit_DHT
+import Adafruit_DHT
 
 SCHEDULER = BackgroundScheduler()
 APP = flask.Flask(__name__)
