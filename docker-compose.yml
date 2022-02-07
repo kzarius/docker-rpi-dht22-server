@@ -12,9 +12,6 @@ services:
     environment:
       # Change this to the appropriate tz database code, or your timestamps will be skewed.
       TZ: Asia/Hong_Kong
-    # Use the appropriate command entry, depending on the sensor.
-    command: python dht22.py
-    # command: python sht31.py
     ports:
       - 4000:4000
     tty: true

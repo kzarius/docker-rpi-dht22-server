@@ -1,31 +1,26 @@
 import flask
 from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
-from smbus2 import SMBus
+import Adafruit_DHT
 
 SCHEDULER = BackgroundScheduler()
 APP = flask.Flask(__name__)
 
-# Get the i2c object.
-I2C_BUS = SMBus(1)
-
 timestamp = None
 humidity = None
 temperature = None
-sensor_communicating = True
 
 try:
-    I2C_BUS.write_i2c_block_data(0x44, 0x2c, [0x06])
-except:
-    sensor_communicating = False
+    DHT_SENSOR = Adafruit_DHT.DHT22
+
+# The GPIO pin that links to the data pin on your DHT sensor.
+DHT_PIN = 3
 
 def getReadings():
     global humidity, temperature, timestamp
-    # Gather readings from the sensor.
-    if sensor_communicating:
-        SENSOR = I2C_BUS.read_i2c_block_data(0x44, 0x00, 6)
-        humidity = 100 * (SENSOR[3] * 256 + SENSOR[4]) / 65535.0
-        temperature = -45 + (175 * (SENSOR[0] * 256 + SENSOR[1]) / 65535.0)
+    try:
+        # Gather readings from the sensor.
+        humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
     else:
         humidity = False
         temperature = False
