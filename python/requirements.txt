@@ -1,3 +1,4 @@
 flask
 APScheduler
 Adafruit_DHT
+smbus2
